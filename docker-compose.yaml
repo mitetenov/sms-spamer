@@ -3,4 +3,6 @@ services:
     image: mitetenov/sms-spamer:latest
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
+      - TELEGRAM_API_ID=${TELEGRAM_API_ID}
+      - TELEGRAM_API_HASH=${TELEGRAM_API_HASH}
     restart: unless-stopped
