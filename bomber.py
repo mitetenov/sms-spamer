@@ -82,10 +82,7 @@ class Bomber:
         import base_service as bs
         bs.DEFAULT_HEADERS["User-Agent"] = random_user_agent()
 
-        # Fetch cookies for services that require them
-        cookies = await self._get_cookies(svc)
-
-        result = await svc.send_sms(phone_formats, self._session, proxy, cookies=cookies)
+        result = await svc.send_sms(phone_formats, self._session, proxy)
         self.stats.record(result)
 
         if result.is_success:

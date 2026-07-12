@@ -46,7 +46,6 @@ def get_service(slug: str) -> Optional[BaseService]:
                 svc.rate_limit_seconds = cfg.get("rate_limit_seconds", svc.rate_limit_seconds)
                 svc.requires_cookies = cfg.get("requires_cookies", svc.requires_cookies)
                 svc.cookies_url = cfg.get("cookies_url", svc.cookies_url)
-                svc.custom_headers = cfg.get("headers", svc.custom_headers)
                 return svc
     except (ImportError, ModuleNotFoundError) as e:
         print(f"[WARN] Could not load service '{slug}': {e}")
