@@ -465,6 +465,10 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json; charset=utf-8"
+    },
     "category": "C"
   },
   "tashirpizza": {
@@ -634,6 +638,10 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
+    "headers": {
+      "Accept": "*/*",
+      "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+    },
     "category": "E"
   },
   "youla": {
@@ -894,6 +902,12 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json; charset=utf-8",
+      "X-Supported-Image-Formats": "webp,jpeg",
+      "platform": "android"
+    },
     "category": "H"
   },
   "twitch": {
@@ -985,6 +999,10 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json; charset=utf-8"
+    },
     "category": "H"
   },
   "alfa_insurance": {
@@ -1167,6 +1185,10 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Host": "mobile.vkusvill.ru:40113"
+    },
     "category": "J"
   },
   "netprint": {
@@ -1284,6 +1306,9 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
+    "headers": {
+      "Accept": "application/json, text/javascript, */*; q=0.01"
+    },
     "category": "D"
   },
   "lenta": {
@@ -1375,6 +1400,9 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
+    "headers": {
+      "Accept": "application/json, text/plain, */*"
+    },
     "category": "C"
   },
   "vsk": {
@@ -1388,19 +1416,6 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "A"
-  },
-  "pochtabank": {
-    "slug": "pochtabank",
-    "label": "Pochtabank",
-    "url": "https://my.pochtabank.ru/dbo/registrationService/ib/phoneNumber",
-    "method": "PUT",
-    "payload_type": "json",
-    "format_key": "+7",
-    "success_code": 200,
-    "rate_limit_seconds": 120,
-    "requires_cookies": true,
-    "cookies_url": "https://my.pochtabank.ru/",
     "category": "A"
   },
   "globus": {
@@ -1440,6 +1455,27 @@
     "rate_limit_seconds": 120,
     "requires_cookies": false,
     "cookies_url": "",
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+    },
+    "category": "A"
+  },
+  "pochtabank": {
+    "slug": "pochtabank",
+    "label": "Pochtabank",
+    "url": "https://my.pochtabank.ru/dbo/registrationService/ib/phoneNumber",
+    "method": "PUT",
+    "payload_type": "json",
+    "format_key": "+7",
+    "success_code": 200,
+    "rate_limit_seconds": 120,
+    "requires_cookies": true,
+    "cookies_url": "https://my.pochtabank.ru/",
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json; charset=utf-8"
+    },
     "category": "A"
   }
 }
