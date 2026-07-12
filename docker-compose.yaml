@@ -1,6 +1,6 @@
 services:
   sms-spamer:
-    build: .
+    image: mitetenov/sms-spamer:latest
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
     restart: unless-stopped
