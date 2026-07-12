@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
+from urllib.parse import urlparse
 
 import aiohttp
 
@@ -47,7 +48,24 @@ DEFAULT_HEADERS = {
     "Accept": "*/*",
     "Accept-Language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
     "Connection": "keep-alive",
+    "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+    "X-Requested-With": "XMLHttpRequest",
 }
+
+
+def _derive_origin_headers(url: str) -> dict:
+    """Derive Origin and Referer headers from the service URL."""
+    try:
+        parsed = urlparse(url)
+        if not parsed.netloc:
+            return {}
+        origin = f"{parsed.scheme}://{parsed.netloc}"
+        return {
+            "Origin": origin,
+            "Referer": f"{origin}/",
+        }
+    except Exception:
+        return {}
 
 
 class BaseService(ABC):
@@ -67,6 +85,7 @@ class BaseService(ABC):
     requires_cookies: bool = False
     cookies_url: str = ""
     format_key: str = "+7"  # phone format variant to use
+    custom_headers: dict = {}  # per-service extra headers from services.json
 
     @abstractmethod
     def build_payload(self, phone_formats: dict) -> dict:
@@ -78,6 +97,7 @@ class BaseService(ABC):
         phone_formats: dict,
         session: aiohttp.ClientSession,
         proxy: Optional[str] = None,
+        cookies: Optional[dict] = None,
     ) -> SendResult:
         """Send an SMS code request to this service.
 
@@ -85,6 +105,7 @@ class BaseService(ABC):
             phone_formats: Dict of phone format variants from format_phone_ru()
             session: Shared aiohttp session
             proxy: Optional proxy URL
+            cookies: Optional cookies dict for services that require them
 
         Returns:
             SendResult with status and metadata
@@ -97,6 +118,20 @@ class BaseService(ABC):
             payload = self.build_payload(phone_formats)
             headers = dict(DEFAULT_HEADERS)
 
+            # Set appropriate Content-Type based on payload type
+            if self.payload_type == "json":
+                headers["Content-Type"] = "application/json; charset=utf-8"
+            elif self.payload_type == "data":
+                headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+
+            # Derive Origin and Referer from the service URL
+            origin_headers = _derive_origin_headers(self.url)
+            headers.update(origin_headers)
+
+            # Merge per-service custom headers (from services.json)
+            if self.custom_headers:
+                headers.update(self.custom_headers)
+
             kwargs = {
                 "headers": headers,
                 "timeout": aiohttp.ClientTimeout(total=15),
@@ -104,9 +139,14 @@ class BaseService(ABC):
             }
             if proxy:
                 kwargs["proxy"] = proxy
+            if cookies:
+                kwargs["cookies"] = cookies
 
+            # Route payload correctly based on type
             if self.payload_type == "json":
                 kwargs["json"] = payload
+            elif self.payload_type == "url":
+                kwargs["params"] = payload
             else:
                 kwargs["data"] = payload
 
