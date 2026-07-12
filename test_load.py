@@ -43,5 +43,5 @@ from phone_utils import format_phone_ru
 fmts = format_phone_ru('+79161234567')
 for slug in ['tinkoff', 'yandex', 'avito']:
     svc = get_service(slug)
-    payload = svc.build_payload('+79161234567', fmts)
+    payload = svc.build_payload(fmts)
     print(f'\n  {slug} payload: {payload}')
