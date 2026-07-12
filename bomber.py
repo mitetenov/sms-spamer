@@ -8,7 +8,7 @@ from typing import Optional
 
 import aiohttp
 
-from base_service import BaseService, SendResult
+from base_service import BaseService, DEFAULT_HEADERS, SendResult
 from phone_utils import format_phone_ru
 from services import load_services
 from stats import BombStats
@@ -79,8 +79,7 @@ class Bomber:
         proxy = self._next_proxy()
 
         # Override headers with a random UA
-        import base_service as bs
-        bs.DEFAULT_HEADERS["User-Agent"] = random_user_agent()
+        DEFAULT_HEADERS["User-Agent"] = random_user_agent()
 
         # Fetch cookies for services that require them
         cookies = await self._get_cookies(svc)
