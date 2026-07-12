@@ -114,7 +114,8 @@
     "rate_limit_seconds": 120,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "A"
+    "category": "A",
+    "verify_ssl": false
   },
   "gazprom": {
     "slug": "gazprom",
@@ -147,7 +148,7 @@
     "label": "Sovcombank",
     "url": "https://online.sovcombank.ru/api/otp/send",
     "method": "POST",
-    "payload_type": "json",
+    "payload_type": "data",
     "format_key": "7",
     "success_code": 200,
     "rate_limit_seconds": 120,
@@ -223,15 +224,16 @@
   "qiwi": {
     "slug": "qiwi",
     "label": "QIWI",
-    "url": "https://qiwi.com/api/send-code",
+    "url": "https://mobile-api.qiwi.com/oauth/authorize",
     "method": "POST",
-    "payload_type": "json",
-    "format_key": "+7",
+    "payload_type": "data",
+    "format_key": "7",
     "success_code": 200,
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "A"
+    "category": "A",
+    "payload_template": "response_type=urn:qiwi:oauth:response-type:confirmation-id&username=7{phone}&client_id=android-qw&client_secret=zAm4FKq9UnSe7id"
   },
   "wildberries": {
     "slug": "wildberries",
@@ -288,28 +290,30 @@
   "citilink": {
     "slug": "citilink",
     "label": "Citilink",
-    "url": "https://www.citilink.ru/registration/confirm/phone/",
+    "url": "https://www.citilink.ru/registration/main/",
     "method": "POST",
     "payload_type": "data",
-    "format_key": "+7",
+    "format_key": "7",
     "success_code": 200,
-    "rate_limit_seconds": 100,
-    "requires_cookies": false,
+    "rate_limit_seconds": 120,
+    "requires_cookies": true,
     "cookies_url": "",
-    "category": "B"
+    "category": "B",
+    "payload_template": "phone={phone}"
   },
   "mvideo": {
     "slug": "mvideo",
     "label": "MVideo",
-    "url": "https://www.mvideo.ru/internal-rest-api/.../getCodeForOtp",
+    "url": "https://www.mvideo.ru/internal-rest-api/common/atg/rest/actors/VerificationActor/getCode",
     "method": "POST",
-    "payload_type": "data",
-    "format_key": "spaces",
+    "payload_type": "json",
+    "format_key": "+7",
     "success_code": 200,
-    "rate_limit_seconds": 120,
-    "requires_cookies": false,
+    "rate_limit_seconds": 60,
+    "requires_cookies": true,
     "cookies_url": "",
-    "category": "B"
+    "category": "B",
+    "payload_template": "{\"phone\":\"{phone}\",\"g-recaptcha-response\":\"\"}"
   },
   "sunlight": {
     "slug": "sunlight",
@@ -509,7 +513,7 @@
   "mtstv": {
     "slug": "mtstv",
     "label": "MTS TV",
-    "url": "https://prod.tvh.mts.ru/tvh-public-api-gateway/.../send-code",
+    "url": "https://prod.tvh.mts.ru/tvh-public-api-gateway/api/v2/send-code",
     "method": "POST",
     "payload_type": "url",
     "format_key": "7",
@@ -535,7 +539,7 @@
   "beeline": {
     "slug": "beeline",
     "label": "Beeline",
-    "url": "https://api.beeline.ru/auth/send-code",
+    "url": "https://api.beeline.ru/v1/auth/send-code",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
@@ -543,12 +547,13 @@
     "rate_limit_seconds": 120,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "D"
+    "category": "D",
+    "payload_template": "{\"phone\":\"{phone}\"}"
   },
   "tele2": {
     "slug": "tele2",
     "label": "Tele2",
-    "url": "https://api.tele2.ru/auth/send-code",
+    "url": "https://msk.tele2.ru/api/validation/number/{phone}",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
@@ -556,7 +561,8 @@
     "rate_limit_seconds": 120,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "D"
+    "category": "D",
+    "payload_template": "{\"sender\": \"Tele2\"}"
   },
   "yota": {
     "slug": "yota",
@@ -602,13 +608,14 @@
     "label": "Yandex Cloud",
     "url": "https://cloud.mail.ru/api/v2/notify/applink",
     "method": "POST",
-    "payload_type": "json",
+    "payload_type": "data",
     "format_key": "+7",
     "success_code": 200,
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "E"
+    "category": "E",
+    "payload_template": "phone={phone}&api=2&email=email&x-email=x-email"
   },
   "icq": {
     "slug": "icq",
@@ -621,7 +628,8 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "E"
+    "category": "E",
+    "payload_template": "msisdn=7{phone}&locale=en&k=ic1rtwz1s1Hj1O0r&r=45559"
   },
   "ok": {
     "slug": "ok",
@@ -647,7 +655,8 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "E"
+    "category": "E",
+    "payload_template": "phone={phone}"
   },
   "telegram": {
     "slug": "telegram",
@@ -743,7 +752,7 @@
   "youdrive": {
     "slug": "youdrive",
     "label": "YouDrive",
-    "url": "http://youdrive.today/login/web/phone",
+    "url": "https://youdrive.today/login/web/phone",
     "method": "POST",
     "payload_type": "data",
     "format_key": "7",
@@ -886,7 +895,7 @@
   "tinder": {
     "slug": "tinder",
     "label": "Tinder",
-    "url": "https://api.gotinder.com/v2/auth/sms/send",
+    "url": "https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=ru",
     "method": "POST",
     "payload_type": "data",
     "format_key": "7",
@@ -894,7 +903,8 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "H"
+    "category": "H",
+    "payload_template": "phone_number=7{phone}"
   },
   "twitch": {
     "slug": "twitch",
@@ -1245,7 +1255,8 @@
     "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "A"
+    "category": "A",
+    "payload_template": "{\"phone\":\"{phone}\"}"
   },
   "platiza": {
     "slug": "platiza",
@@ -1263,7 +1274,7 @@
   "beeline_tv": {
     "slug": "beeline_tv",
     "label": "Beeline Tv",
-    "url": "https://api.beeline.ru/auth/send-code",
+    "url": "https://api.beeline.ru/v1/auth/send-code",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
@@ -1271,7 +1282,8 @@
     "rate_limit_seconds": 120,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "G"
+    "category": "G",
+    "payload_template": "{\"phone\":\"{phone}\"}"
   },
   "invitro": {
     "slug": "invitro",
@@ -1317,13 +1329,14 @@
     "label": "Dns",
     "url": "https://www.dns-shop.ru/auth/send-sms/",
     "method": "POST",
-    "payload_type": "json",
+    "payload_type": "data",
     "format_key": "7",
     "success_code": 200,
     "rate_limit_seconds": 120,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "F"
+    "category": "F",
+    "payload_template": "phone={phone}"
   },
   "start": {
     "slug": "start",
@@ -1432,14 +1445,15 @@
   "sber": {
     "slug": "sber",
     "label": "Sber",
-    "url": "https://www.sberbank.ru/auth/register/confirm",
+    "url": "https://online.sberbank.ru/CSAFront/oidc/sms/authorize.do",
     "method": "POST",
     "payload_type": "data",
     "format_key": "+7",
     "success_code": 200,
-    "rate_limit_seconds": 120,
+    "rate_limit_seconds": 60,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "A"
+    "category": "A",
+    "payload_template": "phone={phone}"
   }
 }

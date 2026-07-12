@@ -92,7 +92,7 @@ class Bomber:
         elif result.status.value == "timeout":
             log.warning(f"⏱️  {svc.service_name}: TIMEOUT")
         else:
-            log.debug(f"❌ {svc.service_name}: FAILED — {result.error or ''}")
+            log.warning(f"❌ {svc.service_name}: FAILED (HTTP {result.http_status}) — {result.error or ''}")
 
         return result
 
@@ -123,7 +123,7 @@ class Bomber:
         self._services = load_services()
         log.info(f"✅ Loaded {len(self._services)} services")
 
-        connector = aiohttp.TCPConnector(limit=100, force_close=True)
+        connector = aiohttp.TCPConnector(limit=200, force_close=False, ttl_dns_cache=300)
         async with aiohttp.ClientSession(connector=connector) as session:
             self._session = session
 
