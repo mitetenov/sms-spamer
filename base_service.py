@@ -78,6 +78,7 @@ class BaseService(ABC):
         phone_formats: dict,
         session: aiohttp.ClientSession,
         proxy: Optional[str] = None,
+        cookies: Optional[dict] = None,
     ) -> SendResult:
         """Send an SMS code request to this service.
 
@@ -85,6 +86,7 @@ class BaseService(ABC):
             phone_formats: Dict of phone format variants from format_phone_ru()
             session: Shared aiohttp session
             proxy: Optional proxy URL
+            cookies: Optional cookies dict for services that require them
 
         Returns:
             SendResult with status and metadata
@@ -104,6 +106,8 @@ class BaseService(ABC):
             }
             if proxy:
                 kwargs["proxy"] = proxy
+            if cookies:
+                kwargs["cookies"] = cookies
 
             if self.payload_type == "json":
                 kwargs["json"] = payload

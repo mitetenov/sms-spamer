@@ -21,4 +21,4 @@ class Service(BaseService):
 
     def build_payload(self, phone_formats: dict) -> dict:
         """Build the request payload with the correct phone format."""
-        return {"phoneNumber": phone_formats["+7"]}
+        return {"phoneNumber": phone_formats.get(self.format_key) or phone_formats.get("+7", "")}
