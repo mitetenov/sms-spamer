@@ -210,6 +210,14 @@ async def _monitor_bomb_task(app: Application):
 
 
 # ---------------------------------------------------------------------------
+# Post-init callback: runs after the event loop is ready
+# ---------------------------------------------------------------------------
+async def _post_init(app: Application):
+    """Post-initialization — start background task once the event loop is running."""
+    app.create_task(_monitor_bomb_task(app))
+
+
+# ---------------------------------------------------------------------------
 # Main entry point
 # ---------------------------------------------------------------------------
 def main():
@@ -222,7 +230,12 @@ def main():
 
     log.info("🤖 Starting SMS Bomber Telegram Bot...")
 
-    app = Application.builder().token(BOT_TOKEN).build()
+    app = (
+        Application.builder()
+        .token(BOT_TOKEN)
+        .post_init(_post_init)
+        .build()
+    )
 
     # Register command handlers
     app.add_handler(CommandHandler("set", cmd_start))
@@ -230,9 +243,6 @@ def main():
     app.add_handler(CommandHandler("stop", cmd_stop))
     app.add_handler(CommandHandler("stats", cmd_stats))
     app.add_handler(CommandHandler("help", cmd_help))
-
-    # Start background monitor
-    app.create_task(_monitor_bomb_task(app))
 
     log.info("✅ Bot initialized. Starting polling...")
     app.run_polling(allowed_updates=Update.ALL_TYPES)
