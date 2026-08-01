@@ -171,7 +171,7 @@
   "homecredit": {
     "slug": "homecredit",
     "label": "Home Credit",
-    "url": "https://homecredit.ru/api/auth/otp",
+    "url": "https://online.sovcombank.ru/api/otp/send",
     "method": "POST",
     "payload_type": "json",
     "format_key": "7",
@@ -210,7 +210,7 @@
   "fastmoney": {
     "slug": "fastmoney",
     "label": "Fastmoney",
-    "url": "https://fastmoney.ru/auth/registration",
+    "url": "https://fastmoney.ru/api/v1/auth/otp/send",
     "method": "POST",
     "payload_type": "data",
     "format_key": "+7",
@@ -262,7 +262,7 @@
   "avito": {
     "slug": "avito",
     "label": "Avito",
-    "url": "https://www.avito.ru/api/auth/send-code",
+    "url": "https://www.avito.ru/api/1/auth/send-code",
     "method": "POST",
     "payload_type": "json",
     "format_key": "7",
@@ -288,7 +288,7 @@
   "citilink": {
     "slug": "citilink",
     "label": "Citilink",
-    "url": "https://www.citilink.ru/registration/confirm/phone/",
+    "url": "https://www.citilink.ru/registration/confirm/phone/{phone}/",
     "method": "POST",
     "payload_type": "data",
     "format_key": "+7",
@@ -402,19 +402,6 @@
     "cookies_url": "",
     "category": "C"
   },
-  "delivery_club": {
-    "slug": "delivery_club",
-    "label": "Delivery Club",
-    "url": "https://api.delivery-club.ru/api1.2/user/otp",
-    "method": "POST",
-    "payload_type": "data",
-    "format_key": "7",
-    "success_code": 200,
-    "rate_limit_seconds": 60,
-    "requires_cookies": false,
-    "cookies_url": "",
-    "category": "C"
-  },
   "magnit": {
     "slug": "magnit",
     "label": "Magnit",
@@ -483,7 +470,7 @@
   "bizonpizza": {
     "slug": "bizonpizza",
     "label": "Bizon Pizza",
-    "url": "https://bizonpizza.ru/api/auth/send-sms-verification-code",
+    "url": "https://bizonpizza.ru/api/v1/auth/send-code",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
@@ -496,9 +483,9 @@
   "beerlogapizza": {
     "slug": "beerlogapizza",
     "label": "Beerloga Pizza",
-    "url": "https://smsc.ru/sys/send.php",
+    "url": "https://beerlogapizza.ru/api/auth/send-code",
     "method": "POST",
-    "payload_type": "data",
+    "payload_type": "json",
     "format_key": "+7",
     "success_code": 200,
     "rate_limit_seconds": 60,
@@ -535,7 +522,7 @@
   "beeline": {
     "slug": "beeline",
     "label": "Beeline",
-    "url": "https://api.beeline.ru/auth/send-code",
+    "url": "https://api.beeline.ru/api/v2/auth/send-code",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
@@ -610,19 +597,6 @@
     "cookies_url": "",
     "category": "E"
   },
-  "icq": {
-    "slug": "icq",
-    "label": "ICQ",
-    "url": "https://www.icq.com/smsreg/requestPhoneValidation.php",
-    "method": "POST",
-    "payload_type": "data",
-    "format_key": "7",
-    "success_code": 200,
-    "rate_limit_seconds": 60,
-    "requires_cookies": false,
-    "cookies_url": "",
-    "category": "E"
-  },
   "ok": {
     "slug": "ok",
     "label": "OK.ru",
@@ -691,7 +665,7 @@
   "gett": {
     "slug": "gett",
     "label": "Gett",
-    "url": "https://driver.gett.ru/api/login/phone/",
+    "url": "https://gett.com/api/login/phone/",
     "method": "POST",
     "payload_type": "data",
     "format_key": "7",
@@ -769,7 +743,7 @@
   "carsmile": {
     "slug": "carsmile",
     "label": "Carsmile",
-    "url": "https://api.carsmile.com/",
+    "url": "https://carsmile.com/api/graphql",
     "method": "POST",
     "payload_type": "json",
     "format_key": "7",
@@ -925,7 +899,7 @@
   "karusel": {
     "slug": "karusel",
     "label": "Karusel",
-    "url": "https://app.karusel.ru/api/v1/phone/",
+    "url": "https://karusel.ru/api/v1/phone/",
     "method": "POST",
     "payload_type": "data",
     "format_key": "7",
@@ -1042,7 +1016,7 @@
   "alparip": {
     "slug": "alparip",
     "label": "Alpari",
-    "url": "https://alpari.com/api/ru/protection/deliver/...",
+    "url": "https://alpari.com/api/ru/personal/password/recovery/send-sms",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
@@ -1130,19 +1104,6 @@
     "cookies_url": "",
     "category": "J"
   },
-  "e_vse": {
-    "slug": "e_vse",
-    "label": "E-vse",
-    "url": "https://e-vse.online/mail2.php",
-    "method": "POST",
-    "payload_type": "data",
-    "format_key": "+7",
-    "success_code": 200,
-    "rate_limit_seconds": 60,
-    "requires_cookies": false,
-    "cookies_url": "",
-    "category": "J"
-  },
   "yaponchik": {
     "slug": "yaponchik",
     "label": "Yaponchik",
@@ -1211,7 +1172,7 @@
   "joymoney": {
     "slug": "joymoney",
     "label": "Joymoney",
-    "url": "https://joy.money/api/v1/auth/login/phone",
+    "url": "https://joy.money/api/v1/auth/login",
     "method": "POST",
     "payload_type": "json",
     "format_key": "7",
@@ -1263,7 +1224,7 @@
   "beeline_tv": {
     "slug": "beeline_tv",
     "label": "Beeline Tv",
-    "url": "https://api.beeline.ru/auth/send-code",
+    "url": "https://api.beeline.ru/api/v2/auth/send-code",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
@@ -1341,7 +1302,7 @@
   "finuslugi": {
     "slug": "finuslugi",
     "label": "Finuslugi",
-    "url": "https://finuslugi.ru/api/v1/auth/send-code",
+    "url": "https://finuslugi.ru/api/v2/auth/send-code",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
