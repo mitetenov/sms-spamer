@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-Comprehensive bomber validation test across all 111 SMS services.
+Comprehensive bomber validation test across all 108 SMS services.
 
 Tests:
-1. All 111 services load correctly
-2. All 111 services build valid payloads
+1. All 108 services load correctly
+2. All 108 services build valid payloads
 3. All services have valid headers/config
 4. Real HTTP test against a diverse sample of 20 services
 5. Full bomber orchestration end-to-end (dry run)
 6. URL endpoint validation (no truncated URLs)
 
-Acceptance: >=90% (100/111) services pass
+Acceptance: >=90% (100/108) services pass
 """
 import sys, os, json, time, asyncio
 
@@ -39,7 +39,7 @@ print("=" * 70)
 # ── Test 1: Load all services ───────────────────────────────────────
 print("\n── 1. Service Loading ──")
 services = load_services()
-assert len(services) == 111, f"Expected 111, got {len(services)}"
+assert len(services) == 108, f"Expected 108, got {len(services)}"
 for svc in services:
     record(svc.service_name, 'load', True, f'{svc.method} {svc.url[:50]}...')
 print(f"  All {len(services)} services loaded successfully")
@@ -256,7 +256,7 @@ async def test_bomber_orchestration():
     
     # Load all services
     svcs = load_services()
-    assert len(svcs) == 111
+    assert len(svcs) == 108
     
     # Test that attack starts and stops cleanly
     # We run attack briefly then stop it
@@ -291,8 +291,8 @@ cats = get_category_stats()
 total_from_cats = sum(cats.values())
 print(f"  Categories: {cats}")
 print(f"  Total: {total_from_cats}")
-cat_ok = total_from_cats == 111
-print(record('categories', 'coverage', cat_ok, f'{total_from_cats}/111'))
+cat_ok = total_from_cats == 108
+print(record('categories', 'coverage', cat_ok, f'{total_from_cats}/108'))
 
 # ── Test 7: No duplicate services ───────────────────────────────────
 print("\n── 7. Service Uniqueness ──")

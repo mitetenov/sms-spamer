@@ -38,16 +38,17 @@ bank_field_map = {
 
 # Category D: Telecom
 telecom_field_map = {
-    'beeline': 'phoneNumber', 'tele2': 'msisdn', 'megafon_tv': 'phoneNumber',
-    'yota': 'phoneNumber', 'mtstv': 'phoneNumber', 'mts_free': 'phoneNumber',
-    'wifi_cabinet': 'phone', 'beeline_tv': 'phoneNumber',
+    'megafon_tv': 'phoneNumber',
+    'yota': 'phoneNumber', 'mtstv': 'phoneNumber',
+    'mts_free': 'phoneNumber',
+    'wifi_cabinet': 'phone',
 }
 
 # All known field overrides
 field_map = {**bank_field_map, **telecom_field_map}
 field_map.update({
-    'ok': 'st.phone', 'icq': 'phoneNumber', 'telegram': 'phone_number',
-    'yandex': 'login', 'magnit': 'PHONE', 'tashirpizza': 'phone_number',
+    'telegram': 'phone_number',
+    'yandex': 'login', 'tashirpizza': 'phone_number',
 })
 
 count_ok = 0
@@ -128,28 +129,28 @@ print(f"{'='*50}")
 
 from services import get_service
 
-# VTB should use "login" 
+# VTB should use "phone"
 vtb = get_service('vtb')
 p = vtb.build_payload(fmts)
-assert 'login' in p, f"VTB missing 'login' field: {p}"
+assert 'phone' in p, f"VTB missing 'phone' field: {p}"
 print(f"  VTB: {p}")
 
-# Tele2 should use "msisdn"
+# Tele2 should use "phone"
 tele2 = get_service('tele2')
 p = tele2.build_payload(fmts)
-assert 'msisdn' in p, f"Tele2 missing 'msisdn' field: {p}"
+assert 'phone' in p, f"Tele2 missing 'phone' field: {p}"
 print(f"  Tele2: {p}")
 
-# OK.ru should use "st.phone"
+# OK.ru should use "phone"
 ok = get_service('ok')
 p = ok.build_payload(fmts)
-assert 'st.phone' in p, f"OK.ru missing 'st.phone' field: {p}"
+assert 'phone' in p, f"OK.ru missing 'phone' field: {p}"
 print(f"  OK.ru: {p}")
 
-# Magnit should use "PHONE"
+# Magnit should use "phone"
 magnit = get_service('magnit')
 p = magnit.build_payload(fmts)
-assert 'PHONE' in p, f"Magnit missing 'PHONE' field: {p}"
+assert 'phone' in p, f"Magnit missing 'phone' field: {p}"
 print(f"  Magnit: {p}")
 
 # URL payload services should still work

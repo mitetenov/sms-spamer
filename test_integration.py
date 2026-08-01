@@ -66,7 +66,7 @@ print("\n" + "="*60)
 print("3. Service payload validation")
 print("="*60)
 services = load_services()
-assert len(services) == 111, f"Expected 111 services, got {len(services)}"
+assert len(services) == 108, f"Expected 108 services, got {len(services)}"
 print(f"Loaded {len(services)} services")
 
 failures = []
