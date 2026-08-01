@@ -30,7 +30,7 @@ from stats import BombStats
 # ---------------------------------------------------------------------------
 # Configuration (override via env vars or a .env file)
 # ---------------------------------------------------------------------------
-BOT_TOKEN = os.environ.get("SMS_BOT_TOKEN", "")
+BOT_TOKEN = os.environ.get("BOT_TOKEN") or os.environ.get("SMS_BOT_TOKEN", "")
 STATS_FILE = os.environ.get("SMS_STATS_FILE", "bomber_stats.json")
 LOG_FILE = os.environ.get("SMS_LOG_FILE", "bomber.log")
 LOG_LEVEL = os.environ.get("SMS_LOG_LEVEL", "INFO")

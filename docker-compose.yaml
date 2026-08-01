@@ -1,6 +1,5 @@
 services:
   sms-spamer:
     build: .
-    environment:
-      - SMS_BOT_TOKEN=${SMS_BOT_TOKEN}
+    env_file: .env
     restart: unless-stopped
