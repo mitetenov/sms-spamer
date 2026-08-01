@@ -28,7 +28,7 @@
   "alfa": {
     "slug": "alfa",
     "label": "Alfa-Bank",
-    "url": "https://alfabank.ru/auth/sms/send",
+    "url": "https://id.alfabank.ru/auth/sms/send",
     "method": "POST",
     "payload_type": "json",
     "format_key": "7",
@@ -41,7 +41,7 @@
   "vtb": {
     "slug": "vtb",
     "label": "VTB",
-    "url": "https://api.vtb.ru/auth/send-code",
+    "url": "https://online.vtb.ru/api/auth/send-code",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
@@ -67,7 +67,7 @@
   "akbars": {
     "slug": "akbars",
     "label": "Ak Bars",
-    "url": "https://www.akbars.ru/api/PhoneConfirm/",
+    "url": "https://online.akbars.ru/api/PhoneConfirm/",
     "method": "POST",
     "payload_type": "json",
     "format_key": "7",
@@ -167,7 +167,8 @@
     "rate_limit_seconds": 120,
     "requires_cookies": false,
     "cookies_url": "",
-    "category": "A"
+    "category": "A",
+    "verify_ssl": false
   },
   "homecredit": {
     "slug": "homecredit",
@@ -238,7 +239,7 @@
   "wildberries": {
     "slug": "wildberries",
     "label": "Wildberries",
-    "url": "https://authorization.wildberries.eu/api/v2/code/request",
+    "url": "https://www.wildberries.ru/api/v2/code/request",
     "method": "POST",
     "payload_type": "json",
     "format_key": "7",
@@ -422,7 +423,7 @@
   "magnit": {
     "slug": "magnit",
     "label": "Magnit",
-    "url": "https://new.moy.magnit.ru/local/ajax/login/",
+    "url": "https://my.magnit.ru/local/ajax/login/",
     "method": "POST",
     "payload_type": "data",
     "format_key": "+7",
@@ -434,8 +435,8 @@
   },
   "kfc": {
     "slug": "kfc",
-    "label": "KFC",
-    "url": "https://app-api.kfc.ru/api/v1/common/auth/send-validation-sms",
+    "label": "Rostic's (KFC)",
+    "url": "https://rostics.ru/api/v1/common/auth/send-validation-sms",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
@@ -553,7 +554,7 @@
   "tele2": {
     "slug": "tele2",
     "label": "Tele2",
-    "url": "https://msk.tele2.ru/api/validation/number/{phone}",
+    "url": "https://my.tele2.ru/api/validation/number/{phone}",
     "method": "POST",
     "payload_type": "json",
     "format_key": "+7",
